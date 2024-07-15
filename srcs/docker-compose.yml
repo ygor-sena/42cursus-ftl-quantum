@@ -1,0 +1,14 @@
+services:
+  ftl-quantum:
+    image: ftl-quantum:42
+    container_name: ftl-quantum
+    init: true
+    build:
+      context: requirements/ftl-quantum
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    expose:
+      - 8888
+    environment:
+      - IBM_API_TOKEN
