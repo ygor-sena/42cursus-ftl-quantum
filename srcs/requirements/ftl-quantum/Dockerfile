@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM python:3.11.9-slim-bookworm
+FROM python:3.11.9-slim-bullseye
 
 # Install dependencies
 RUN apt-get update -y && \
