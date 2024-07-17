@@ -1,21 +1,18 @@
 # syntax=docker/dockerfile:1
-FROM debian:bullseye
+FROM python:3.11.9-slim-bookworm
 
+# Install dependencies
 RUN apt-get update -y && \
 		apt-get upgrade -y && \
-		apt-get install -y \
-		python3 \
-		python3-pip
-
-RUN pip install \
-		qiskit \
-		qiskit-aer \
-		qiskit-ibm-runtime \
-		qiskit[visualization] \
-		jupyter
+		apt-get install -y
 
 WORKDIR /home/42-ftl-quantum
 
+# Copy and install Python dependencies
+COPY conf/requirements.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy exercise files after dependencies to leverage Docker cache
 COPY conf/exercises ./exercises
 
 # Run Jupyter Notebook
