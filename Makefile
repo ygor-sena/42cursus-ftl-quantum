@@ -1,10 +1,11 @@
-DOCKER_COMPOSE = docker-compose -f srcs/docker-compose.yml
 DOCKER_IMG_NAME = ftl-quantum
+DOCKER_COMPOSE = docker-compose -f srcs/docker-compose.yml
+DOCKER_DEPLOY = ./srcs/requirements/ftl-quantum/tools/deploy.sh
 
 up:
 	$(DOCKER_COMPOSE) up -d --build
-	chmod +x ./launch_app.sh
-	./launch_app.sh $(DOCKER_IMG_NAME)
+	chmod +x $(DOCKER_DEPLOY)
+	$(DOCKER_DEPLOY) $(DOCKER_IMG_NAME)
 
 down:
 	$(DOCKER_COMPOSE) down
