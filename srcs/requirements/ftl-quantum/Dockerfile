@@ -7,7 +7,7 @@ RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
 		rm -f /etc/apt/apt.conf.d/docker-clean \
 		apt-get update && \
 		apt-get upgrade -y && \
-		apt-get install -y
+		apt-get clean
 
 WORKDIR /home/42-ftl-quantum
 
